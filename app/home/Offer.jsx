@@ -23,18 +23,46 @@ export default function WhatWeOffer() {
   return (
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
-        <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold text-gray-900">WHAT WE OFFER</h2>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-            Lorem ipsum dolor sit amet, consectetur adipi scing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.
-          </p>
-          <p className="mt-2 text-gray-600 max-w-2xl mx-auto">
-            Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.
-          </p>
-          <button className="mt-6 px-6 py-2 bg-yellow-400 text-black font-semibold rounded hover:bg-yellow-300">
-            Read More
-          </button>
-        </div>
+       <div className="mb-12 flex flex-col md:flex-row items-center justify-center gap-8 px-6">
+  {/* Left Side - Photo */}
+  <div className="w-full md:w-1/2 flex justify-center">
+    <img
+      src="/Construction Assets.jpg"
+      alt="What We Offer"
+      className="w-full max-w-md rounded-2xl shadow-md object-cover"
+    />
+  </div>
+
+  {/* Right Side - Texts */}
+  <div className="w-full md:w-1/2">
+    <h2 className="text-3xl font-bold text-gray-900">WHAT WE OFFER</h2>
+    <p className="mt-4 text-gray-600">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+    <p className="mt-4 text-gray-600">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+    <p className="mt-4 text-gray-600">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+    <p className="mt-2 text-gray-600">
+      Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.
+    </p>
+    <p className="mt-2 text-gray-600">
+      Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.
+    </p>
+    <p className="mt-2 text-gray-600">
+      Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.
+    </p>
+    <p className="mt-2 text-gray-600">
+      Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.
+    </p>
+    <button className="mt-6 px-6 py-2 bg-yellow-400 text-black font-semibold rounded hover:bg-yellow-300">
+      Read More
+    </button>
+  </div>
+</div>
+
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
           {features.map((feature, index) => (

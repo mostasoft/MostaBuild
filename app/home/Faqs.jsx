@@ -38,10 +38,10 @@ export default function FAQ() {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="border border-gray-200 rounded-lg p-4 shadow-sm"
+              className="border border-gray-200 border-b-3 border-b-yellow-300 rounded-lg p-4 shadow-sm"
             >
               <button
-                className="flex justify-between items-center w-full text-left"
+                className=" flex justify-between items-center w-full text-left"
                 onClick={() => toggleFAQ(index)}
               >
                 <h3 className="text-lg font-medium">{faq.question}</h3>
@@ -51,6 +51,7 @@ export default function FAQ() {
                   <FiChevronDown className="text-xl text-yellow-400" />
                 )}
               </button>
+              
               {activeIndex === index && (
                 <p className="mt-3 text-gray-600 text-sm">{faq.answer}</p>
               )}

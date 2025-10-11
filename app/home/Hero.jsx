@@ -1,11 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaSearch, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 export default function Hero() {
   const [query, setQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [currentImage, setCurrentImage] = useState(0);
+
+  const images = [
+    "/House construction site.jpg",
+    "/ContractorClicks_com.jpg",
+    "/Construction Phase.jpg",
+  ];
+
+  // Auto-slide logic
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 5000); // change every 5s
+    return () => clearInterval(interval);
+  }, [images.length]);
+
+  const prevSlide = () => {
+    setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  const nextSlide = () => {
+    setCurrentImage((prev) => (prev + 1) % images.length);
+  };
 
   const blogPosts = [
     {
@@ -34,16 +57,21 @@ export default function Hero() {
 
   return (
     <section className="relative w-full min-h-[90vh] overflow-hidden">
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: "url('/hero-industrial.jpg')", // replace with your image
-        }}
-      ></div>
+      {/* Sliding Background Images */}
+      <div className="absolute inset-0">
+        {images.map((img, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out ${
+              index === currentImage ? "opacity-100" : "opacity-0"
+            }`}
+            style={{ backgroundImage: `url('${img}')` }}
+          />
+        ))}
+      </div>
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/60"></div>
+      <div className="absolute bg-black/20 inset-0"></div>
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center h-[90vh] px-6 sm:px-10">
@@ -87,20 +115,25 @@ export default function Hero() {
       </div>
 
       {/* Slider Arrows */}
-      <button className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 bg-yellow-500 hover:bg-yellow-600 text-white p-3 sm:p-4 rounded-md shadow-md transition z-20">
+      <button
+        onClick={prevSlide}
+        className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 bg-yellow-500 hover:bg-yellow-600 text-white p-3 sm:p-4 rounded-md shadow-md transition z-20"
+      >
         <FaChevronLeft />
       </button>
-      <button className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 bg-yellow-500 hover:bg-yellow-600 text-white p-3 sm:p-4 rounded-md shadow-md transition z-20">
+      <button
+        onClick={nextSlide}
+        className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 bg-yellow-500 hover:bg-yellow-600 text-white p-3 sm:p-4 rounded-md shadow-md transition z-20"
+      >
         <FaChevronRight />
       </button>
 
       {/* Blog Section */}
-      <div className="relative z-10 bg-white w-full py-16 px-6 sm:px-12 lg:px-20">
+      <div className="relative z-10 bg-yellow-300 w-full py-16 px-6 sm:px-12 lg:px-20">
         <h2 className="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-10">
           Latest <span className="text-yellow-500">Blog Posts</span>
         </h2>
 
-        {/* Display Search Results or All */}
         <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {(searchResults.length > 0 ? searchResults : blogPosts).map((post) => (
             <div
@@ -118,7 +151,6 @@ export default function Hero() {
           ))}
         </div>
 
-        {/* No Results Message */}
         {searchResults.length === 0 && query && (
           <p className="text-center text-gray-500 mt-8">
             No blog posts found for "{query}"

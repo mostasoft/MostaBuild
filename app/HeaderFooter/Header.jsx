@@ -49,14 +49,10 @@ export default function Header() {
         <div className="max-w-7xl mx-auto flex justify-between items-center py-3 px-4">
           {/* Left: Logo */}
           <div className="flex items-center gap-3">
-            <img
-              src="/logo.png"
-              alt="Industrial Logo"
-              className="w-12 h-12 object-contain"
-            />
+           
             <div>
               <h2 className="text-2xl font-extrabold text-gray-900 uppercase tracking-tight">
-                Industrial
+                MostaBuild
               </h2>
               <p className="text-xs text-gray-500 uppercase">
                 Industry & Factory Solutions
